@@ -1,15 +1,17 @@
 import {Button} from 'native-base';
 import {View, Text} from 'react-native';
+import AMCarousel from '../../components/am-carousel';
 
 const HomeScreen = () => {
   return (
     <View>
-      <Text
+      <View
         style={{
-          color: 'red',
+          marginHorizontal: 20,
+          marginVertical: 20,
         }}>
-        Home Screen
-      </Text>
+        <AMCarousel />
+      </View>
     </View>
   );
 };
