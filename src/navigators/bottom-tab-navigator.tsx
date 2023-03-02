@@ -11,7 +11,11 @@ const BottomNavigations = ({
   initialScreen = 'home',
 }: BottomNavigationsProps) => {
   return (
-    <BottomTab.Navigator initialRouteName={initialScreen}>
+    <BottomTab.Navigator
+      screenOptions={{
+        tabBarActiveBackgroundColor: 'blue.200',
+      }}
+      initialRouteName={initialScreen}>
       {bottomNavigatorRoutes.map(route => (
         <BottomTab.Screen
           key={route.name}

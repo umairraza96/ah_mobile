@@ -1,6 +1,6 @@
-import {Image, Text, View} from 'native-base';
+import {Image, Text} from 'native-base';
 import {useRef} from 'react';
-import {Dimensions} from 'react-native';
+import {Dimensions, View} from 'react-native';
 import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
 
 const AMCarousel = () => {
@@ -19,34 +19,30 @@ const AMCarousel = () => {
 
   const width = Dimensions.get('window').width;
   return (
-    <View style={{flex: 1, borderRadius: 10}}>
-      <Carousel
-        loop
-        style={{borderRadius: 10}}
-        width={width - 40}
-        height={width / 2}
-        autoPlay={true}
-        data={data}
-        ref={ref}
-        autoPlayInterval={3000} // ms
-        scrollAnimationDuration={3000} // ms
-        pagingEnabled
-        renderItem={datai => (
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              borderRadius: 10,
-            }}>
-            <Image
-              source={{uri: datai.item.image}}
-              alt="no reso"
-              size={'100%'}
-            />
-          </View>
-        )}
-      />
-    </View>
+    // <View style={{flex: 1, borderRadius: 10}}>
+    <Carousel
+      loop
+      style={{borderRadius: 10}}
+      width={width - 40}
+      height={width / 2}
+      autoPlay={true}
+      data={data}
+      ref={ref}
+      autoPlayInterval={3000} // ms
+      scrollAnimationDuration={3000} // ms
+      pagingEnabled
+      renderItem={datai => (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            borderRadius: 10,
+          }}>
+          <Image source={{uri: datai.item.image}} alt="no reso" size={'100%'} />
+        </View>
+      )}
+    />
+    // </View>
   );
 };
 
