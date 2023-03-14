@@ -1,8 +1,10 @@
 import {combineReducers} from '@reduxjs/toolkit';
-import counter from '../features/cart';
+import counterReducer from '../features/cart';
+import userReducer from '../features/user';
 
 const reducer = combineReducers({
-  counter: counter,
+  counter: counterReducer,
+  user: userReducer,
 });
 
 export default reducer;
