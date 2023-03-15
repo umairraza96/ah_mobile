@@ -12,3 +12,8 @@ export const createAppAsyncThunk = createAsyncThunk.withTypes<{
   rejectValue: string;
   extra: unknown;
 }>();
+
+export interface ResponseData {
+  statusCode: number;
+  message: string;
+}

@@ -1,14 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {signIn} from './user.thunk';
+import {signIn, signUp} from './user.thunk';
+import {User} from './user.types';
 
 interface IUserState {
-  user: Object;
+  user: User | null;
   pending: boolean;
   error: string | null;
 }
 
 const initialState: IUserState = {
-  user: {},
+  user: null,
   pending: false,
   error: null,
 };
@@ -16,21 +17,40 @@ const initialState: IUserState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    signOut: state => {
+      state.user = null;
+      state.pending = false;
+      state.error = null;
+    },
+  },
   extraReducers: builder => {
+    builder.addCase(signUp.pending, (state, action) => {
+      state.pending = true;
+    });
+
+    builder.addCase(signUp.fulfilled, (state, action) => {
+      state.pending = false;
+      state.user = action.payload;
+    });
+
+    builder.addCase(signUp.rejected, (state, action) => {
+      state.pending = false;
+      state.error = action.payload || 'Something went wrong';
+    });
+
     builder.addCase(signIn.pending, (state, action) => {
       state.pending = true;
     });
 
     builder.addCase(signIn.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.pending = false;
       state.user = action.payload;
     });
 
     builder.addCase(signIn.rejected, (state, action) => {
       state.pending = false;
-      state.error = action.payload || 'Something went wrong';
+      state.error = 'Something went wrong';
     });
   },
 });

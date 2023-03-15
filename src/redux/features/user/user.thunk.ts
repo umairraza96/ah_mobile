@@ -1,9 +1,19 @@
 import axios, {AxiosError} from 'axios';
+import HTTP from '../../../common/http';
 import {createAppAsyncThunk} from '../../types';
+import {User, UserResponseData} from './user.types';
 
 interface Credentials {
   email: string;
   password: string;
+}
+
+interface RegisterForm {
+  email: string;
+  password: string;
+  username: string;
+  firstname: string;
+  lastname: string;
 }
 
 export const signIn = createAppAsyncThunk(
@@ -11,16 +21,35 @@ export const signIn = createAppAsyncThunk(
   async (credentials: Credentials, {rejectWithValue}) => {
     try {
       console.log(credentials);
-      const response: any = await axios.post(
-        'http://192.168.100.27:4040/api/v1/auth/login',
-        credentials,
-      );
+      const response = await HTTP<UserResponseData, Credentials>({
+        method: 'post',
+        url: '/auth/signin',
+        data: credentials,
+      });
+      if (!response) return rejectWithValue('Invalid Credentials');
 
-      console.log(response);
       return response.data;
     } catch (error) {
-      const axiosError = error as AxiosError;
-      return rejectWithValue('Something went wrong');
+      return rejectWithValue('Login failed');
+    }
+  },
+);
+
+export const signUp = createAppAsyncThunk(
+  'user/signUp',
+  async (registerForm: RegisterForm, {rejectWithValue}) => {
+    try {
+      const response = await HTTP<UserResponseData, RegisterForm>({
+        method: 'post',
+        url: '/auth/signup',
+        data: registerForm,
+      });
+
+      if (!response) return rejectWithValue('Registration failed');
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue('Registeration failed');
     }
   },
 );

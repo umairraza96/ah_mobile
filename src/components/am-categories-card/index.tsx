@@ -12,7 +12,7 @@ const AMCategoryCard = ({name, image, description}: AMCategoryCardProps) => {
       rounded={'md'}
       justifyContent={'center'}
       alignItems={'center'}
-      bgColor="blueGray.200"
+      bgColor="orange.200"
       style={{
         display: 'flex',
         padding: 15,

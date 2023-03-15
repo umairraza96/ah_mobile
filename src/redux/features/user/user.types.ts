@@ -1,3 +1,5 @@
+import {ResponseData} from '../../types';
+
 export interface User {
   id: string;
   email: string;
@@ -15,4 +17,8 @@ export interface User {
   created_at: string;
   updated_at: string;
   access_token: string;
+}
+
+export interface UserResponseData extends ResponseData {
+  data: User;
 }
