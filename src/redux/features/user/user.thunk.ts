@@ -20,7 +20,6 @@ export const signIn = createAppAsyncThunk(
   'user/signIn',
   async (credentials: Credentials, {rejectWithValue}) => {
     try {
-      console.log(credentials);
       const response = await HTTP<UserResponseData, Credentials>({
         method: 'post',
         url: '/auth/signin',

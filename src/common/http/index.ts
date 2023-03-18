@@ -25,10 +25,15 @@ interface IHTTP<MD> {
   data?: MD;
 }
 
-const HTTP = async <T, MD>({method, url, headers, data}: IHTTP<MD>) => {
+const HTTP = async <T, MD = undefined>({
+  method,
+  url,
+  headers,
+  data,
+}: IHTTP<MD>) => {
   try {
     //  local IP address
-    const baseURL = 'http://192.168.100.27:4040/api/v1';
+    const baseURL = 'http://192.168.100.108:4040/api/v1';
 
     const response = await axios({
       method,

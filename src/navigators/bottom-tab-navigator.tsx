@@ -1,5 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
+import {colors} from '../common/constants';
 import ProductScreen from '../screens/product';
 import bottomNavigatorRoutes from './bottom-navigator-routes';
 
@@ -32,7 +33,7 @@ const BottomNavigations = ({
   return (
     <BottomTab.Navigator
       screenOptions={{
-        tabBarActiveBackgroundColor: 'blue.200',
+        tabBarActiveTintColor: colors.accentDark,
       }}
       initialRouteName={initialScreen}>
       {bottomNavigatorRoutes.map(route => (

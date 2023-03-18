@@ -1,5 +1,6 @@
 import {View} from 'native-base';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {colors} from '../common/constants';
 import CartCounter from '../components/cart-counter';
 import CartScreen from '../screens/cart';
 import HomeScreen from '../screens/home';
