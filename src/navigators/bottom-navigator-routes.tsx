@@ -35,7 +35,7 @@ const bottomNavigatorRoutes: BottomNavigatorRoutes[] = [
     name: 'cart',
     component: CartScreen,
     options: {
-      title: 'Cart',
+      title: 'My Cart',
       tabBarLabel: 'Cart',
       tabBarIcon: ({color, size}) => (
         <View style={{position: 'relative'}}>

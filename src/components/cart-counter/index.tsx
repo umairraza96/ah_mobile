@@ -3,12 +3,12 @@ import {useAppSelector} from '../../redux/types';
 import styles from './styles';
 
 const CartCounter = () => {
-  const {value} = useAppSelector(state => state.counter);
+  const {totalItems} = useAppSelector(state => state.cart);
   return (
     <View style={styles.container}>
-      {value ? (
+      {totalItems ? (
         <Badge colorScheme="danger" rounded="full" variant="solid">
-          {value}
+          {totalItems}
         </Badge>
       ) : null}
     </View>

@@ -1,6 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
 import {IconButton, Image, Pressable, Text, View} from 'native-base';
 import {MaterialCommunityIcons} from '../../common/icons';
+import {cartActions} from '../../redux/features/cart';
+import {useAppDispatch, useAppSelector} from '../../redux/types';
 import {useImageOrPlaceholder} from '../../utils';
 
 interface AMProductProps {
@@ -12,10 +14,13 @@ interface AMProductProps {
 }
 
 const AMProduct = ({id, name, image, description, price}: AMProductProps) => {
+  const {productsMap} = useAppSelector(state => state.product);
+  const dispatch = useAppDispatch();
   const navigation = useNavigation();
 
   function addToCart() {
-    console.log('Add To Cart');
+    const product = productsMap[id];
+    dispatch(cartActions.addToCart(product));
   }
 
   function onProductPress() {

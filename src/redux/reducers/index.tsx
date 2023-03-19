@@ -1,11 +1,11 @@
 import {combineReducers} from '@reduxjs/toolkit';
-import counterReducer from '../features/cart';
+import cartReducer from '../features/cart';
 import categoryReducer from '../features/categoy';
 import productReducer from '../features/product';
 import userReducer from '../features/user';
 
 const reducer = combineReducers({
-  counter: counterReducer,
+  cart: cartReducer,
   user: userReducer,
   product: productReducer,
   categories: categoryReducer,

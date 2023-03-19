@@ -1,6 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {View} from 'native-base';
+import {Pressable} from 'react-native';
 import {colors} from '../common/constants';
+import {MaterialCommunityIcons} from '../common/icons';
+import CartCounter from '../components/cart-counter';
 import ProductScreen from '../screens/product';
 import bottomNavigatorRoutes from './bottom-navigator-routes';
 
@@ -13,6 +18,7 @@ interface BottomNavigationsProps {
 const HomeNavigator = createStackNavigator();
 
 const HomeNavigations = () => {
+  const navigation = useNavigation();
   return (
     <HomeNavigator.Navigator initialRouteName="Home">
       <HomeNavigator.Screen
@@ -27,6 +33,16 @@ const HomeNavigations = () => {
         component={ProductScreen}
         options={{
           headerTitle: 'Product Details',
+          headerRight: props => {
+            return (
+              <Pressable onPress={() => navigation.navigate('cart')}>
+                <View mr="5">
+                  <CartCounter />
+                  <MaterialCommunityIcons name="cart" size={25} />
+                </View>
+              </Pressable>
+            );
+          },
         }}
       />
     </HomeNavigator.Navigator>
