@@ -1,8 +1,9 @@
 import {Image, Text, View} from 'native-base';
+import {useImageOrPlaceholder} from '../../utils';
 
 interface AMCategoryCardProps {
   name: string;
-  image: string;
+  image: string | null;
   description: string;
 }
 
@@ -23,7 +24,7 @@ const AMCategoryCard = ({name, image, description}: AMCategoryCardProps) => {
         {name}
       </Text>
       <Image
-        source={{uri: image}}
+        source={useImageOrPlaceholder(image)}
         resizeMode="contain"
         rounded="md"
         alt="no reso"

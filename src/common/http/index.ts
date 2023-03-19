@@ -33,7 +33,8 @@ const HTTP = async <T, MD = undefined>({
 }: IHTTP<MD>) => {
   try {
     //  local IP address
-    const baseURL = 'http://192.168.100.108:4040/api/v1';
+    // const baseURL = 'http://192.168.100.108:4040/api/v1';
+    const baseURL = 'http://172.20.10.7:4040/api/v1';
 
     const response = await axios({
       method,

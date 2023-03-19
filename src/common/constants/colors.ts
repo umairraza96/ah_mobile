@@ -2,6 +2,7 @@ export const colors = {
   primary: '#3F51B5',
   primaryDark: '#303F9F',
   primaryLight: '#C5CAE9',
+  borderColor: '#D3D3D3',
   accent: '#EBA607',
   accentDark: '#E57200',
   accentLight: '#FF80AB',

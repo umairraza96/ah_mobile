@@ -22,7 +22,13 @@ const HomeNavigations = () => {
         }}
         component={BottomNavigations}
       />
-      <HomeNavigator.Screen name="product" component={ProductScreen} />
+      <HomeNavigator.Screen
+        name="product"
+        component={ProductScreen}
+        options={{
+          headerTitle: 'Product Details',
+        }}
+      />
     </HomeNavigator.Navigator>
   );
 };

@@ -1,17 +1,23 @@
-import {categories} from '../../data';
-import {Button, ScrollView, Text, View} from 'native-base';
+import {ScrollView, View} from 'native-base';
 import AMCarousel from '../../components/am-carousel';
 import AMHeading from '../../components/am-heading';
 import AMCategoryCard from '../../components/am-categories-card';
 import AMProduct from '../../components/am-product';
 import AMSearchBar from '../../components/am-search-bar';
 import {useEffect, useState} from 'react';
-import {colors} from '../../common/constants';
 import {useAppDispatch, useAppSelector} from '../../redux/types';
 import {getProducts} from '../../redux/features/product/products.thunk';
+import {getCategories} from '../../redux/features/categoy/category.thunk';
 
 const HomeScreen = () => {
-  const {products, pending} = useAppSelector(state => state.product);
+  const {products, productPending, categories, categoryPending} =
+    useAppSelector(state => ({
+      products: state.product.products,
+      productPending: state.product.pending,
+      categories: state.categories.categories,
+      categoryPending: state.categories.pending,
+    }));
+
   const dispatch = useAppDispatch();
 
   const [searchText, setSearchText] = useState<string>('');
@@ -24,16 +30,23 @@ const HomeScreen = () => {
   async function fetchProducts() {
     await dispatch(getProducts());
   }
+  async function fetchCategories() {
+    await dispatch(getCategories());
+  }
+
+  async function initFetch() {
+    await Promise.all([fetchProducts(), fetchCategories()]);
+  }
 
   useEffect(() => {
-    fetchProducts();
+    initFetch();
   }, []);
 
   return (
     <ScrollView>
       <View
-        // bgColor={colors.white}
         pb={'5'}
+        bgColor="white"
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -80,6 +93,7 @@ const HomeScreen = () => {
               return (
                 <AMProduct
                   key={index}
+                  id={product.id}
                   name={product.name}
                   description={product.description}
                   image={product.image}

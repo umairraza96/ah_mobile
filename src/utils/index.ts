@@ -12,3 +12,15 @@ export const convertArrayToIdMap = <T extends {id: string}>(array: T[]) => {
 
   return map;
 };
+
+/**
+ *
+ * @param image string url of the image
+ * @returns image or placeholder
+ */
+export const useImageOrPlaceholder = (image?: string | null) => {
+  const imageOrPlaceholder = image
+    ? {uri: image}
+    : require('../assets/images/placeholder.png');
+  return imageOrPlaceholder;
+};

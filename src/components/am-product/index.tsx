@@ -1,23 +1,29 @@
 import {useNavigation} from '@react-navigation/native';
 import {IconButton, Image, Pressable, Text, View} from 'native-base';
 import {MaterialCommunityIcons} from '../../common/icons';
+import {useImageOrPlaceholder} from '../../utils';
 
 interface AMProductProps {
+  id: string;
   name: string;
   image?: string;
   description: string;
   price: number;
 }
 
-const AMProduct = ({name, image, description, price}: AMProductProps) => {
+const AMProduct = ({id, name, image, description, price}: AMProductProps) => {
   const navigation = useNavigation();
-  const placeholder = require('../../assets/images/placeholder.png');
-  const productImage = image ? {uri: image} : placeholder;
+
   function addToCart() {
     console.log('Add To Cart');
   }
+
+  function onProductPress() {
+    navigation.navigate('product', {id});
+  }
+
   return (
-    <Pressable onPress={() => navigation.navigate('product', {id: '2'})}>
+    <Pressable onPress={onProductPress}>
       <View
         p="10px"
         position="relative"
@@ -35,7 +41,7 @@ const AMProduct = ({name, image, description, price}: AMProductProps) => {
           justifyContent={'center'}
           alignItems="center">
           <Image
-            source={productImage}
+            source={useImageOrPlaceholder(image)}
             resizeMode="contain"
             rounded="md"
             alt="no reso"
