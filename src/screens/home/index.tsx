@@ -53,7 +53,7 @@ const HomeScreen = () => {
           flex: 1,
           paddingHorizontal: 20,
         }}>
-        <AMSearchBar searchQuery={searchText} onSearch={onSearch} />
+        {/* <AMSearchBar searchQuery={searchText} onSearch={onSearch} /> */}
         <View my="3">
           <AMCarousel />
         </View>

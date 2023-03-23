@@ -41,7 +41,7 @@ const cartSlice = createSlice({
       }
     },
 
-    removeFromCart: (state, action: PayloadAction<Product>) => {
+    decreaseQuantity: (state, action: PayloadAction<Product>) => {
       const productIndex = state.items.findIndex(
         item => item.product.id === action.payload.id,
       );
@@ -57,6 +57,16 @@ const cartSlice = createSlice({
         state.totalPrice = state.totalPrice - action.payload.price;
         state.totalItems--;
       }
+    },
+
+    removeFromCart: (state, action: PayloadAction<Product>) => {
+      const removedItems = state.items.filter(
+        item => item.product.id !== action.payload.id,
+      );
+
+      state.items = removedItems;
+      state.totalItems--;
+      state.totalPrice -= action.payload.price;
     },
   },
   extraReducers: builder => {},

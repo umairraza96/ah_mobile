@@ -29,6 +29,8 @@ const SignInScreen = () => {
   async function onRegisterHereTap() {
     navigation.navigate('signup');
   }
+
+  const isDisabled = credentials.email && credentials.password ? false : true;
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -74,7 +76,7 @@ const SignInScreen = () => {
             onChangeText={text => onTextChange('password', text)}
           />
         </View>
-        <Button isLoading={pending} onPress={onSignIn}>
+        <Button isLoading={pending} isDisabled={isDisabled} onPress={onSignIn}>
           Sign In
         </Button>
         <View
