@@ -1,6 +1,7 @@
 import {combineReducers} from '@reduxjs/toolkit';
 import cartReducer from '../features/cart';
-import categoryReducer from '../features/categoy';
+import categoryReducer from '../features/category';
+import orderReducer from '../features/order';
 import productReducer from '../features/product';
 import userReducer from '../features/user';
 
@@ -9,6 +10,7 @@ const reducer = combineReducers({
   user: userReducer,
   product: productReducer,
   categories: categoryReducer,
+  orders: orderReducer,
 });
 
 export default reducer;

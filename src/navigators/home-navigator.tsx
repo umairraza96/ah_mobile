@@ -6,6 +6,9 @@ import {Pressable} from 'react-native';
 import {colors} from '../common/constants';
 import {MaterialCommunityIcons} from '../common/icons';
 import CartCounter from '../components/cart-counter';
+import AccountScreen from '../screens/account';
+import MyOrdersScreen from '../screens/my-orders';
+import OrderScreen from '../screens/order';
 import ProductScreen from '../screens/product';
 import bottomNavigatorRoutes from './bottom-navigator-routes';
 
@@ -43,6 +46,27 @@ const HomeNavigations = () => {
               </Pressable>
             );
           },
+        }}
+      />
+      <HomeNavigator.Screen
+        name="order"
+        component={OrderScreen}
+        options={{
+          headerTitle: 'Order',
+        }}
+      />
+      <HomeNavigator.Screen
+        name="myorders"
+        component={MyOrdersScreen}
+        options={{
+          headerTitle: 'My Orders',
+        }}
+      />
+      <HomeNavigator.Screen
+        name="account"
+        component={AccountScreen}
+        options={{
+          headerTitle: 'Account',
         }}
       />
     </HomeNavigator.Navigator>

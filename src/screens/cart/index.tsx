@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import {Button, Text, View} from 'native-base';
 import {ScrollView} from 'react-native-gesture-handler';
 import {colors} from '../../common/constants';
@@ -7,7 +8,12 @@ import styles from './style';
 
 const CartScreen = () => {
   const {items, totalPrice} = useAppSelector(state => state.cart);
+  const navigation = useNavigation();
   const dispatch = useAppDispatch();
+
+  function onProceedToCheckout() {
+    navigation.navigate('order');
+  }
 
   return (
     <>
@@ -35,7 +41,10 @@ const CartScreen = () => {
           </Text>
         </View>
         <View>
-          <Button bgColor={'orange.600'} isDisabled={totalPrice === 0}>
+          <Button
+            bgColor={'orange.600'}
+            onPress={onProceedToCheckout}
+            isDisabled={totalPrice === 0}>
             <Text fontSize="md" color="white">
               Proceed to Checkout
             </Text>

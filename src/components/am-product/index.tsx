@@ -34,7 +34,9 @@ const AMProduct = ({id, name, image, description, price}: AMProductProps) => {
         position="relative"
         rounded="md"
         display="flex"
-        borderWidth={'1'}
+        // borderWidth={'1'}
+        borderWidth="0.3"
+        shadow="2"
         bgColor="white"
         borderColor="gray.400"
         width={180}

@@ -10,7 +10,6 @@ const AMSearchBar = ({searchQuery, onSearch}: AMSearchBarProps) => {
   return (
     <View my="2">
       <Input
-        focusOutlineColor={'blue.400'}
         color="black"
         value={searchQuery}
         onChangeText={onSearch}

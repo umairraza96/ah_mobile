@@ -18,6 +18,12 @@ export interface AuthRoute {
   options?: StackNavigationOptions;
 }
 
+export interface HomeNavigationRoute {
+  name: string;
+  component: React.FC;
+  options?: StackNavigationOptions;
+}
+
 export type AuthStackParamList = {
   signin: undefined;
   signup: undefined;
@@ -29,6 +35,9 @@ export type BottomTabParamList = {
   cart: undefined;
   profile: undefined;
   product: {id: string};
+  order: undefined;
+  myorders: undefined;
+  account: undefined;
 };
 
 export type RootStackParamList = {} & AuthStackParamList & BottomTabParamList;

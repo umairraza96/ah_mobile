@@ -7,7 +7,7 @@ import AMSearchBar from '../../components/am-search-bar';
 import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../redux/types';
 import {getProducts} from '../../redux/features/product/products.thunk';
-import {getCategories} from '../../redux/features/categoy/category.thunk';
+import {getCategories} from '../../redux/features/category/category.thunk';
 
 const HomeScreen = () => {
   const {products, productPending, categories, categoryPending} =
