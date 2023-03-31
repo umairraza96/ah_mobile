@@ -15,8 +15,9 @@ interface IOrderForm {
 }
 
 const OrderScreen = () => {
-  const {items, pending} = useAppSelector(state => ({
+  const {items, totalPrice, pending} = useAppSelector(state => ({
     items: state.cart.items,
+    totalPrice: state.cart.totalPrice,
     pending: state.orders.pending,
   }));
   const dispatch = useAppDispatch();
@@ -42,6 +43,7 @@ const OrderScreen = () => {
       phone_no: orderForm.phoneNo,
       address: orderForm.address,
       alt_phone: orderForm.altPhoneNo,
+      total_price: totalPrice,
       order_items: items.map((item, index) => ({
         product_id: item.product.id,
         quantity: item.quantity,
