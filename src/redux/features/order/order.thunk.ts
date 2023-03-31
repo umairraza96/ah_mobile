@@ -32,6 +32,7 @@ interface ICreateOrder {
   address: string;
   phone_no: string;
   alt_phone?: string;
+  total_price: number;
   order_items: {product_id: string; quantity: number; price: number}[];
 }
 

@@ -5,6 +5,7 @@ export interface Order {
   address: string | null;
   phone_no: string | null;
   alt_phone: string | null;
+  total_price: number;
   user_id: string;
   created_at: string;
   updated_at: string;
