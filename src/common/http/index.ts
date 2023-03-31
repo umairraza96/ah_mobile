@@ -33,8 +33,8 @@ const HTTP = async <T, D = undefined>({
 }: IHTTP<D>) => {
   try {
     //  local IP address
-    const baseURL = 'http://192.168.100.108:4040/api/v1';
-    // const baseURL = 'http://192.168.100.26:4040/api/v1';
+    // const baseURL = 'http://192.168.100.108:4040/api/v1';
+    const baseURL = 'http://192.168.100.26:4040/api/v1';
 
     // const baseURL = 'http://172.20.10.7:4040/api/v1';
 
@@ -46,8 +46,8 @@ const HTTP = async <T, D = undefined>({
     });
 
     return response.data as T;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    console.log(error.response.data.message);
   }
 };
 

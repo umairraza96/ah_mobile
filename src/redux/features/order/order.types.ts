@@ -2,6 +2,9 @@ import {ResponseData} from '../../types';
 
 export interface Order {
   id: string;
+  address: string | null;
+  phone_no: string | null;
+  alt_phone: string | null;
   user_id: string;
   created_at: string;
   updated_at: string;

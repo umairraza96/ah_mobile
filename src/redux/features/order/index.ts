@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getAllOrders} from './order.thunk';
+import {createOrder, getAllOrders} from './order.thunk';
 import {Order} from './order.types';
 
 interface IOrderState {
@@ -29,6 +29,20 @@ const orderSlice = createSlice({
     });
 
     builder.addCase(getAllOrders.rejected, (state, action) => {
+      state.pending = false;
+      state.error = action.payload || 'Something Went Wrong';
+    });
+
+    builder.addCase(createOrder.pending, (state, action) => {
+      state.pending = true;
+    });
+
+    builder.addCase(createOrder.fulfilled, (state, action) => {
+      state.pending = false;
+      state.orders.push(action.payload);
+    });
+
+    builder.addCase(createOrder.rejected, (state, action) => {
       state.pending = false;
       state.error = action.payload || 'Something Went Wrong';
     });
