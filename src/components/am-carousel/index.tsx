@@ -1,6 +1,6 @@
-import {Image, Text} from 'native-base';
+import {Image, Text, View} from 'native-base';
 import {useRef} from 'react';
-import {Dimensions, View} from 'react-native';
+import {Dimensions} from 'react-native';
 import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
 
 const AMCarousel = () => {
@@ -42,7 +42,6 @@ const AMCarousel = () => {
         </View>
       )}
     />
-    // </View>
   );
 };
 
