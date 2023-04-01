@@ -28,8 +28,9 @@ export const signIn = createAppAsyncThunk(
       if (!response) return rejectWithValue('Invalid Credentials');
 
       return response.data;
-    } catch (error) {
-      return rejectWithValue('Login failed');
+    } catch (error: any) {
+      console.log(error.message);
+      return rejectWithValue(error.message || 'Sign In Failed');
     }
   },
 );

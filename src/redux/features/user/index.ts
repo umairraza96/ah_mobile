@@ -50,7 +50,7 @@ const userSlice = createSlice({
 
     builder.addCase(signIn.rejected, (state, action) => {
       state.pending = false;
-      state.error = 'Something went wrong';
+      state.error = action.payload || 'Something went wrong';
     });
   },
 });

@@ -1,15 +1,16 @@
 import {useNavigation} from '@react-navigation/native';
-import {Button, Image, Input, Text, View} from 'native-base';
-import {useState} from 'react';
+import {Button, Image, Input, Text, View, useToast} from 'native-base';
+import {useEffect, useState} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
 import {signIn} from '../../redux/features/user/user.thunk';
 import {useAppDispatch, useAppSelector} from '../../redux/types';
 import styles from './styles';
 
 const SignInScreen = () => {
-  const {pending} = useAppSelector(state => state.user);
+  const {pending, error} = useAppSelector(state => state.user);
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
+  const toast = useToast();
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
@@ -29,6 +30,13 @@ const SignInScreen = () => {
   async function onRegisterHereTap() {
     navigation.navigate('signup');
   }
+
+  useEffect(() => {
+    if (error)
+      toast.show({
+        description: error,
+      });
+  }, [error]);
 
   const isDisabled = credentials.email && credentials.password ? false : true;
   return (

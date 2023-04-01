@@ -8,6 +8,7 @@ import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../redux/types';
 import {getProducts} from '../../redux/features/product/products.thunk';
 import {getCategories} from '../../redux/features/category/category.thunk';
+import {RefreshControl} from 'react-native-gesture-handler';
 
 const HomeScreen = () => {
   const {products, productPending, categories, categoryPending} =
@@ -21,6 +22,7 @@ const HomeScreen = () => {
   const dispatch = useAppDispatch();
 
   const [searchText, setSearchText] = useState<string>('');
+  const [refreshing, setRefreshing] = useState<boolean>(false);
 
   function onSearch(query: string) {
     setSearchText(query);
@@ -38,12 +40,21 @@ const HomeScreen = () => {
     await Promise.all([fetchProducts(), fetchCategories()]);
   }
 
+  async function onRefresh() {
+    setRefreshing(true);
+    await initFetch();
+    setRefreshing(false);
+  }
+
   useEffect(() => {
     initFetch();
   }, []);
 
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
       <View
         pb={'5'}
         bgColor="white"
